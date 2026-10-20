@@ -1,0 +1,21 @@
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+<header class="container">
+  <div class="utility-bar">
+    <p><span aria-hidden="true">✦</span> Un universo de sabor en <strong>Pizzas Nibiru</strong></p>
+    <a class="menu-shortcut" routerLink="/menu">Explora nuestro menú</a>
+    <a class="basket" routerLink="/carrito"><img src="/images/home/basket.png" alt="" width="43" height="43"> Carrito <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="navigation-row">
+    <a class="wordmark" routerLink="/home" aria-label="Pizzas Nibiru, inicio">Pizzas<span>Nibiru</span><span class="brand-dot" aria-hidden="true">✦</span></a>
+    <button #menuToggle class="menu-toggle" type="button" aria-controls="main-navigation" [attr.aria-expanded]="menuOpen()" [attr.aria-label]="menuOpen() ? 'Cerrar navegación' : 'Abrir navegación'" (click)="toggleMenu()" (keydown.escape)="closeMenu(menuToggle)">
+      <span aria-hidden="true">{{ menuOpen() ? '×' : '☰' }}</span>
+    </button>
+    <nav id="main-navigation" aria-label="Navegación principal" [class.is-open]="menuOpen()" (keydown.escape)="closeMenu(menuToggle)">
+      <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Inicio</a>
+      <a routerLink="/menu" routerLinkActive="active" ariaCurrentWhenActive="page">Menú</a>
+      <a routerLink="/home" fragment="categorias">Categorías</a>
+      <a routerLink="/home" fragment="destacados">Destacados</a>
+    </nav>
+    <a class="login" routerLink="/login"><img src="/images/home/user.png" alt="" width="31" height="27">Iniciar sesión</a>
+  </div>
+</header>

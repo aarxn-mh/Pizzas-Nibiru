@@ -1,0 +1,59 @@
+:host { display: block; min-width: 0; }
+.menu-page { padding-bottom: 64px; }
+.restaurant-hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 581px); align-items: center; gap: 48px; min-height: 477px; padding: 57px; border-radius: 12px; background: linear-gradient(#f4f4f4e6, #f4f4f4e6), url('/images/menu/restaurant-background.png') center / cover; }
+.eyebrow { margin: 0 0 12px; font-size: 20px; }
+h1 { margin: 0 0 16px; font-size: clamp(30px, 3.125vw, 54px); line-height: 1.22; font-weight: 600; }
+.hero-description { margin: 0 0 28px; line-height: 1.8; }
+.hero-tags, .catalog-heading, .results-heading, .filter-summary { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.hero-tags span { padding: 12px 18px; background: var(--ink); color: white; border-radius: 120px; font-size: 13px; }
+.restaurant-photo { display: block; width: 100%; height: auto; aspect-ratio: 581 / 361; object-fit: cover; border-radius: 12px; }
+.restaurant-ribbon { position: absolute; bottom: -30px; left: 0; padding: 18px 32px; border-radius: 0 12px 12px 0; background: var(--orange); font-weight: 600; }
+.catalog { margin-top: 80px; }
+.catalog-heading { justify-content: space-between; margin-bottom: 36px; }
+h2, h3 { margin: 0; font-size: clamp(24px, 1.86vw, 32px); }
+h3 { color: #a84f00; }
+.search-field { width: 344px; max-width: 100%; }
+.search-field label { display: block; margin: 0 0 8px 20px; font-size: 13px; }
+.search-control { position: relative; }
+.search-control > span { position: absolute; left: 20px; top: 12px; font-size: 27px; pointer-events: none; }
+input { width: 100%; height: 63px; border: 1px solid #989898; border-radius: 120px; padding: 12px 20px 12px 53px; color: var(--ink); background: white; font-size: 15px; }
+.category-bar { display: flex; flex-wrap: wrap; gap: 12px; padding: 24px; border-radius: 12px; background: var(--orange); }
+button { min-height: 44px; padding: 10px 18px; border: 1px solid var(--ink); border-radius: 120px; color: var(--ink); background: white; cursor: pointer; }
+.category-bar button { flex: 1 1 auto; border: 0; background: transparent; font-size: 15px; font-weight: 600; }
+.category-bar button.active { background: var(--ink); color: white; }
+.category-bar button:hover { text-decoration: underline; }
+.results-heading { justify-content: space-between; margin-top: 52px; }
+.results-heading p, .filter-summary p { margin: 0; font-size: 14px; }
+.demo-note { margin: 14px 0 24px; color: #595959; font-size: 13px; }
+.filter-summary { justify-content: space-between; padding: 14px 18px; margin-bottom: 24px; border-radius: 12px; background: #f4f4f4; }
+.filter-summary p { overflow-wrap: anywhere; min-width: 0; }
+.menu-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 20px; }
+.empty-state { grid-column: 1 / -1; padding: 48px 24px; text-align: center; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; }
+.empty-state > span { font-size: 44px; }
+h4 { margin: 12px 0; font-size: 22px; }
+.back-home { display: inline-block; margin-top: 40px; padding-block: 12px; text-underline-offset: 4px; font-size: 14px; }
+@media (max-width: 1400px) {
+  .restaurant-hero { min-height: 400px; padding: 40px; gap: 32px; grid-template-columns: minmax(0, 1fr) minmax(0, 45%); }
+  .menu-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .restaurant-hero { grid-template-columns: minmax(0, 1fr); padding: 32px; gap: 24px; text-align: center; }
+  .restaurant-photo { order: -1; max-width: 440px; margin-inline: auto; }
+  .hero-tags { justify-content: center; }
+  .restaurant-ribbon { position: static; justify-self: center; border-radius: 12px; }
+  .catalog { margin-top: 40px; }
+}
+@media (max-width: 600px) {
+  .menu-page { padding-bottom: 36px; }
+  .restaurant-hero { padding: 20px 16px; gap: 20px; }
+  .restaurant-photo { max-width: 300px; }
+  .eyebrow, .hero-description { font-size: 14px; }
+  .hero-tags { flex-direction: column; }
+  .restaurant-ribbon { font-size: 13px; }
+  .catalog-heading { flex-direction: column; align-items: stretch; gap: 24px; }
+  .search-field { width: 100%; }
+  .category-bar { gap: 6px; padding: 10px; }
+  .category-bar button { flex: 1 1 40%; font-size: 12px; }
+  .results-heading { margin-top: 32px; }
+  .menu-products { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}

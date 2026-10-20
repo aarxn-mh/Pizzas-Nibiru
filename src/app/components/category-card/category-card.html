@@ -1,0 +1,7 @@
+<a class="category-card" routerLink="/menu" [queryParams]="{ categoria: category().id }">
+  <img [src]="category().image" alt="" width="238" height="203" loading="lazy">
+  <div class="caption">
+    <h3>{{ category().name }}</h3>
+    <p>{{ category().description }}</p>
+  </div>
+</a>

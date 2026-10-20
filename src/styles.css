@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root { --orange: #fc8a06; --ink: #03081f; --green: #028643; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: white; font-family: 'Poppins', sans-serif; }
+.container { width: calc(100% - clamp(24px, 11.574vw, 200px)); max-width: 1528px; margin-inline: auto; }
+a { color: inherit; }
+button, input { font: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3px solid #1767c5; outline-offset: 5px; }
+.wordmark { display: inline-flex; align-items: baseline; gap: 5px; color: var(--ink); font-size: 30px; font-weight: 700; text-decoration: none; letter-spacing: -1.5px; white-space: nowrap; }
+.wordmark > span:first-child { background: var(--orange); padding: 0 4px; border-radius: 3px; }
+.wordmark .brand-dot { font-size: 24px; color: var(--orange); }
+.button { display: inline-flex; gap: 20px; align-items: center; background: var(--orange); color: var(--ink); padding: 15px 28px; border-radius: 120px; font-weight: 600; text-decoration: none; }
+.skip-link { position: absolute; top: 8px; left: 16px; z-index: 10; padding: 12px 20px; background: white; color: var(--ink); transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+@media (max-width: 1100px) {
+  .container { width: calc(100% - 48px); }
+}
+@media (max-width: 600px) {
+  .container { width: calc(100% - 24px); }
+  .wordmark { font-size: 25px; }
+}

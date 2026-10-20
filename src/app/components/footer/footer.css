@@ -1,0 +1,30 @@
+:host { display: block; min-width: 0; }
+.footer-main { background: #e8e8e8; padding: 80px 0 64px; }
+.footer-grid { display: grid; grid-template-columns: minmax(0, 400fr) minmax(0, 490fr) minmax(0, 230fr) minmax(0, 230fr); gap: clamp(20px, 2.78vw, 48px); align-items: start; }
+h2 { font-size: 18px; margin: 0 0 20px; font-weight: 700; }
+p { font-size: 15px; line-height: 1.8; }
+.brand-column p { margin-top: 28px; }
+nav a { display: block; font-size: 15px; line-height: 43px; text-underline-offset: 4px; }
+.account-links { display: flex; border-radius: 120px; background: #d9d9d9; width: 100%; max-width: 450px; margin-top: 28px; }
+.account-links a { padding: 18px 28px; flex: 1; text-align: center; border-radius: 120px; text-decoration: none; font-weight: 600; }
+.account-links a:first-child { background: var(--orange); }
+.footer-bottom { background: var(--ink); color: white; min-height: 73px; }
+.footer-bottom .container { display: flex; align-items: center; justify-content: space-between; min-height: 73px; }
+.footer-bottom p, .footer-bottom a { font-size: 13px; }
+
+@media (max-width: 1100px) {
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+  .footer-main { padding-block: 48px; }
+  .footer-bottom .container { gap: 20px; padding-block: 18px; flex-wrap: wrap; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .brand-column, .account-column { text-align: center; }
+  .brand-column .wordmark { font-size: 34px; }
+  .brand-column p { margin-top: 24px; }
+  .account-links { margin-inline: auto; }
+  .account-links a { padding: 16px 12px; font-size: 14px; }
+  nav { padding-inline: 20px; }
+  .footer-bottom .container { flex-direction: column; text-align: center; gap: 8px; padding-block: 20px; }
+  .footer-bottom p { margin: 0; }
+}

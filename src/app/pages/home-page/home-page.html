@@ -1,0 +1,35 @@
+<div class="container home">
+  <app-hero-banner />
+  <section class="section" id="destacados" aria-labelledby="featured-title">
+    <div class="section-heading"><h2 id="featured-title">Descubre tus próximos favoritos <span aria-hidden="true">✦</span></h2><a class="outline-link" routerLink="/menu">Ver todo el menú <span aria-hidden="true">→</span></a></div>
+    <p class="sample-note">Selección de ejemplo · Precios y disponibilidad de demostración</p>
+    <div class="products">
+      @for (product of featuredProducts; track product.id) {
+        <app-product-card [product]="product" />
+      } @empty {
+        <p class="empty-message">Por ahora no hay productos destacados.</p>
+      }
+    </div>
+  </section>
+  <section class="section" id="categorias" aria-labelledby="categories-title">
+    <div class="section-heading"><h2 id="categories-title">Explora nuestras categorías <span aria-hidden="true">✦</span></h2></div>
+    <div class="categories">
+      @for (category of categories; track category.id) {
+        <app-category-card [category]="category" />
+      } @empty {
+        <p class="empty-message">Por ahora no hay categorías disponibles.</p>
+      }
+    </div>
+  </section>
+  <section class="about" aria-labelledby="about-title">
+    <div class="about-heading"><h2 id="about-title">Conoce Pizzas Nibiru</h2><span class="outline-label">Un universo de sabor</span></div>
+    <div class="about-panel">
+      <div class="about-copy"><h3>Tu siguiente favorito<br>está en nuestro menú.</h3><p>Explora las categorías, descubre los productos destacados y consulta sus detalles.</p><a routerLink="/menu" class="button">Explorar menú <span aria-hidden="true">→</span></a></div>
+      <div class="steps">
+        <article><h3>Explora el menú</h3><img src="/images/home/step-explore.png" alt="" width="128" height="128" loading="lazy"><p>Encuentra una categoría que se te antoje.</p></article>
+        <article><h3>Conoce cada producto</h3><img src="/images/home/step-discover.png" alt="" width="115" height="115" loading="lazy"><p>Consulta su descripción, precio y disponibilidad.</p></article>
+        <article><h3>Elige tu favorito</h3><img src="/images/home/step-favorite.png" alt="" width="128" height="128" loading="lazy"><p>Descubre todo lo que hay en Pizzas Nibiru.</p></article>
+      </div>
+    </div>
+  </section>
+</div>

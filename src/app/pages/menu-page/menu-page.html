@@ -1,0 +1,60 @@
+<div class="container menu-page">
+  <section class="restaurant-hero" aria-labelledby="menu-title">
+    <div class="restaurant-copy">
+      <p class="eyebrow">Un universo de sabor</p>
+      <h1 id="menu-title">Pizzas Nibiru</h1>
+      <p class="hero-description">Explora nuestras categorías y encuentra tu próximo favorito.</p>
+      <div class="hero-tags"><span>Menú del restaurante</span><span>Catálogo de demostración</span></div>
+    </div>
+    <img class="restaurant-photo" src="/images/menu/restaurant-hero.png" alt="" width="581" height="361" fetchpriority="high">
+    <span class="restaurant-ribbon">Descubre nuestro menú <span aria-hidden="true">✦</span></span>
+  </section>
+
+  <section class="catalog" aria-labelledby="catalog-title">
+    <div class="catalog-heading">
+      <div><h2 id="catalog-title">Nuestro menú</h2></div>
+      <div class="search-field">
+        <label for="product-search">Buscar por nombre</label>
+        <div class="search-control">
+          <span aria-hidden="true">⌕</span>
+          <input #searchInput id="product-search" type="search" placeholder="Busca en nuestro menú…" autocomplete="off" [value]="searchText()" (input)="searchText.set(searchInput.value)" aria-controls="menu-results">
+        </div>
+      </div>
+    </div>
+    <div class="category-bar" role="group" aria-label="Filtrar productos por categoría">
+      <button type="button" [class.active]="selectedCategory() === null" [attr.aria-pressed]="selectedCategory() === null" (click)="selectCategory(null)">Todo el menú</button>
+      @for (category of categories; track category.id) {
+        <button type="button" [class.active]="selectedCategory() === category.id" [attr.aria-pressed]="selectedCategory() === category.id" (click)="selectCategory(category.id)">{{ category.name }}</button>
+      } @empty {
+        <p>No hay categorías disponibles.</p>
+      }
+    </div>
+
+    <div class="results-heading">
+      <h3>{{ currentCategory()?.name ?? 'Todos los productos' }}</h3>
+      <p role="status" aria-live="polite" aria-atomic="true">{{ filteredProducts().length }} {{ filteredProducts().length === 1 ? 'producto encontrado' : 'productos encontrados' }}</p>
+    </div>
+    <p class="demo-note">Selección de ejemplo. Imágenes, precios y disponibilidad de demostración.</p>
+    @if (searchText().trim() || selectedCategory() !== null) {
+      <div class="filter-summary">
+        <p>Mostrando {{ currentCategory()?.name ?? 'todas las categorías' }}@if (searchText().trim()) { <span> · Búsqueda: “{{ searchText().trim() }}”</span> }</p>
+        <button type="button" (click)="resetFilters()">Limpiar filtros</button>
+      </div>
+    }
+    <div class="menu-products" id="menu-results">
+      @for (product of filteredProducts(); track product.id) {
+        <app-product-card [product]="product" variant="menu" />
+      } @empty {
+        <div class="empty-state">
+          <span aria-hidden="true">⌕</span>
+          <h4>No encontramos productos</h4>
+          <p>Prueba otro nombre o selecciona una categoría diferente.</p>
+          @if (searchText().trim() || selectedCategory() !== null) {
+            <button type="button" (click)="resetFilters()">Ver todo el menú</button>
+          }
+        </div>
+      }
+    </div>
+    <a class="back-home" routerLink="/home"><span aria-hidden="true">←</span> Volver al inicio</a>
+  </section>
+</div>

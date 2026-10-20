@@ -1,0 +1,13 @@
+<article class="product-card" [class.menu-card]="variant() === 'menu'">
+  <a class="product-link" [routerLink]="['/producto', product().id]">
+    <div class="photo"><img [src]="product().image" alt="" width="496" height="325" loading="lazy">@if (variant() === 'featured') {<span class="badge">Destacado</span>}</div>
+    <div class="product-copy">
+      @if (variant() === 'featured') {<p class="label">Pizzas Nibiru</p>}<h3>{{ product().name }}</h3>
+      <p class="description">{{ product().description }}</p>
+      <div class="details"><strong>{{ product().price | currency:'MXN':'symbol':'1.2-2':'es-MX' }} MXN</strong>
+        <span class="availability" [class.unavailable]="!product().available">{{ product().available ? 'Disponible' : 'No disponible' }}</span>
+      </div>
+      <span class="detail-link">Ver producto <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>
