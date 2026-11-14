@@ -1,1 +1,89 @@
-<p>cart-page works!</p>
+<div class="container cart-page">
+  <a class="back-link" routerLink="/menu"><span aria-hidden="true">←</span> Seguir explorando el menú</a>
+  <div class="page-heading">
+    <div><p class="eyebrow">Pizzas Nibiru</p><h1>Mi carrito</h1></div>
+    @if (cart.items().length > 0) {
+      <button class="clear-button" type="button" (click)="cart.clear()">Vaciar carrito</button>
+    }
+  </div>
+  <p class="demo-note">Entorno de demostración. Los productos, precios y cantidades son ejemplos locales; no se registran pedidos.</p>
+  <p class="cart-status" role="status" aria-live="polite">{{ cart.totalQuantity() }} {{ cart.totalQuantity() === 1 ? 'unidad seleccionada' : 'unidades seleccionadas' }} · {{ cart.items().length }} {{ cart.items().length === 1 ? 'producto' : 'productos' }}</p>
+
+  <div class="cart-layout" [class.empty-layout]="cart.items().length === 0">
+    <section class="cart-list" aria-labelledby="items-title">
+      <h2 id="items-title" class="list-title"><img src="/images/home/basket.png" alt="" width="38" height="38">Productos seleccionados</h2>
+      <div class="cart-items">
+        @for (line of cart.lines(); track line.productId) {
+          <article class="cart-item" [class.has-issue]="line.issue !== null">
+            <div class="item-photo">
+              @if (line.product; as product) {
+                <img [src]="product.image" alt="" width="100" height="100">
+              } @else {
+                <span class="missing-photo" aria-hidden="true">!</span>
+              }
+            </div>
+            <div class="item-information">
+              <h3>{{ line.product?.name ?? 'Producto fuera del catálogo' }}</h3>
+              @if (!line.product) { <p class="product-id">Referencia: {{ line.productId }}</p> }
+              @if (line.unitPriceCents !== null) {
+                <p class="unit-price">Precio unitario: <strong>{{ line.unitPriceCents / 100 | currency:'MXN':'symbol':'1.2-2':'es-MX' }} MXN</strong></p>
+              }
+              @if (line.issue !== null) {
+                <p class="issue-message">{{ line.issue === 'unavailable' ? 'No disponible para la venta.' : 'Este producto no existe o ya no está activo.' }} No se incluye en el subtotal.</p>
+              }
+              <div class="item-actions">
+                <div class="quantity-control" role="group" [attr.aria-label]="'Cantidad de ' + (line.product?.name ?? line.productId)">
+                  <button type="button" [disabled]="line.quantity <= 1" [attr.aria-label]="'Disminuir cantidad de ' + (line.product?.name ?? line.productId)" (click)="cart.decreaseQuantity(line.productId)">−</button>
+                  <span class="quantity">{{ line.quantity }}</span>
+                  <button type="button" [disabled]="line.issue !== null" [attr.aria-label]="'Aumentar cantidad de ' + (line.product?.name ?? line.productId)" (click)="cart.increaseQuantity(line.productId)">+</button>
+                </div>
+                <button class="remove-button" type="button" [attr.aria-label]="'Eliminar ' + (line.product?.name ?? line.productId)" (click)="cart.removeProduct(line.productId)">Eliminar</button>
+              </div>
+            </div>
+            <div class="line-total">
+              <span>Importe de línea</span>
+              @if (line.lineSubtotalCents !== null) {
+                <strong>{{ line.lineSubtotalCents / 100 | currency:'MXN':'symbol':'1.2-2':'es-MX' }} MXN</strong>
+              } @else {
+                <strong class="not-counted">No contabilizado</strong>
+              }
+            </div>
+          </article>
+        } @empty {
+          <div class="empty-state">
+            <span class="empty-icon" aria-hidden="true">✦</span>
+            <h3>Tu carrito está vacío</h3>
+            <p>Explora nuestro menú o carga un ejemplo para probar cantidades y subtotales.</p>
+            <div class="empty-actions">
+              <a class="button" routerLink="/menu">Explorar menú <span aria-hidden="true">→</span></a>
+              <button class="example-button" type="button" [disabled]="!canLoadExample" (click)="loadExample()">Cargar ejemplo</button>
+            </div>
+            @if (!canLoadExample) { <p>No hay productos disponibles para cargar un ejemplo.</p> }
+          </div>
+        }
+      </div>
+    </section>
+
+    @if (cart.items().length > 0) {
+      <aside class="cart-summary" aria-labelledby="summary-title">
+        <h2 id="summary-title">Resumen del carrito</h2>
+        <dl>
+          <div><dt>Productos diferentes</dt><dd>{{ cart.items().length }}</dd></div>
+          <div><dt>Unidades seleccionadas</dt><dd>{{ cart.totalQuantity() }}</dd></div>
+        </dl>
+        @if (cart.issueCount() > 0) {
+          <p class="summary-warning" role="status">Hay {{ cart.issueCount() }} {{ cart.issueCount() === 1 ? 'producto con incidencias' : 'productos con incidencias' }}. El subtotal solo incluye productos disponibles; las unidades seleccionadas incluyen todas las líneas.</p>
+        }
+        <div class="subtotal">
+          <span>{{ cart.issueCount() > 0 ? 'Subtotal de productos disponibles' : 'Subtotal' }}</span>
+          <strong>{{ cart.subtotal() | currency:'MXN':'symbol':'1.2-2':'es-MX' }} <small>MXN</small></strong>
+        </div>
+        <section class="checkout-note" aria-labelledby="checkout-title">
+          <h3 id="checkout-title">Continuación al pedido</h3>
+          <p>Estará disponible cuando implementemos autenticación y checkout. Confirmar un pedido requerirá iniciar sesión.</p>
+          <span>Demostración sin compra</span>
+        </section>
+      </aside>
+    }
+  </div>
+</div>

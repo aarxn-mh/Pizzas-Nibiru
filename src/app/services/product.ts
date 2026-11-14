@@ -4,6 +4,11 @@ import { Product } from '../interfaces/product.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
+  /** Consulta pública: los productos no disponibles siguen visibles si están activos. */
+  getProductById(id: string): Product | undefined {
+    return this.products.find(product => product.id === id && product.active);
+  }
+
   // Datos de demostración: no representan precios ni disponibilidad reales.
   readonly categories: readonly Category[] = [
     { id: 'burgers', name: 'Hamburguesas', description: 'Clásicos para disfrutar', image: '/images/home/category-burgers.png', active: true },

@@ -24,3 +24,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
   .container { width: calc(100% - 24px); }
   .wordmark { font-size: 25px; }
 }
+
+/* Estilos compartidos, limitados a las páginas de autenticación. */
+.auth-page { padding-block: 16px clamp(40px, 5vw, 80px); }
+.auth-page .auth-card { width: 100%; margin-inline: auto; padding: clamp(24px, 3vw, 40px); border: 1px solid #e4e4e4; border-radius: 12px; background: white; box-shadow: 0 8px 30px #03081f0d; overflow-wrap: anywhere; }
+.auth-page .auth-eyebrow { margin: 0 0 16px; font-size: 14px; font-weight: 600; }
+.auth-page .auth-eyebrow span { color: #a84f00; margin-left: 8px; }
+.auth-page h1 { margin: 0 0 12px; font-size: clamp(28px, 3vw, 36px); line-height: 1.25; }
+.auth-page .auth-intro { color: #595959; line-height: 1.7; margin: 0 0 24px; font-size: 14px; }
+.auth-page .auth-notice { margin: 0 0 24px; padding: 14px 16px; border-left: 4px solid var(--orange); background: #fff4e6; font-size: 13px; line-height: 1.7; }
+.auth-page .auth-required { color: #595959; font-size: 12px; margin: 0 0 16px; }
+.auth-page .auth-fields { display: grid; gap: 22px 20px; }
+.auth-page .auth-field { min-width: 0; }
+.auth-page label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; }
+.auth-page input { display: block; min-width: 0; width: 100%; min-height: 48px; padding: 12px; border: 1px solid #767676; border-radius: 8px; background: white; color: var(--ink); font-size: 16px; }
+.auth-page input[aria-invalid="true"] { border-color: #a12616; }
+.auth-page .auth-error { margin: 8px 0 0; color: #a12616; font-size: 13px; line-height: 1.6; }
+.auth-page .auth-submit { display: flex; justify-content: center; align-items: center; width: 100%; min-height: 48px; margin-top: 28px; padding: 14px 20px; border: 0; border-radius: 120px; background: var(--ink); color: white; font-weight: 600; cursor: pointer; }
+.auth-page .auth-submit:hover { background: var(--orange); color: var(--ink); }
+.auth-page .auth-submit:active { transform: translateY(1px); }
+.auth-page .auth-feedback { margin: 16px 0 0; font-size: 14px; line-height: 1.7; }
+.auth-page .auth-feedback:empty { margin: 0; }
+.auth-page .auth-switch { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 5px; margin: 24px 0 0; font-size: 14px; line-height: 1.7; text-align: center; }
+.auth-page .auth-switch a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-underline-offset: 4px; }

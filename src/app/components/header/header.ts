@@ -2,6 +2,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Component, inject, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CartService } from '../../services/cart';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './header.css',
 })
 export class Header {
+  readonly cart = inject(CartService);
   readonly menuOpen = signal(false);
 
   constructor() {

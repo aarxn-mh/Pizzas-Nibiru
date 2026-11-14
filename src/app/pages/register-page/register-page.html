@@ -1,1 +1,66 @@
-<p>register-page works!</p>
+<div class="container auth-page">
+  <section class="auth-card" aria-labelledby="register-page-title">
+    <p class="auth-eyebrow">Pizzas Nibiru <span aria-hidden="true">✦</span></p>
+    <h1 id="register-page-title">Crear una cuenta</h1>
+    <p class="auth-intro">Registro de clientes de Pizzas Nibiru.</p>
+    <p class="auth-notice" id="register-page-notice">Conexión con el servidor pendiente. Este formulario solo valida los datos localmente.</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate aria-describedby="register-page-notice">
+      <p class="auth-required">Todos los campos son obligatorios.</p>
+      <div class="auth-fields">
+        <div class="auth-field">
+          <label for="register-page-firstName">Nombre</label>
+          <input id="register-page-firstName" type="text" autocomplete="given-name" formControlName="firstName" required
+            [attr.aria-invalid]="showError('firstName')" [attr.aria-describedby]="(showError('firstName')) ? 'register-page-firstName-error' : null">
+          @if (showError('firstName')) {
+            <p class="auth-error" id="register-page-firstName-error">Escribe tu nombre.</p>
+          }
+        </div>
+        <div class="auth-field">
+          <label for="register-page-lastName">Apellidos</label>
+          <input id="register-page-lastName" type="text" autocomplete="family-name" formControlName="lastName" required
+            [attr.aria-invalid]="showError('lastName')" [attr.aria-describedby]="(showError('lastName')) ? 'register-page-lastName-error' : null">
+          @if (showError('lastName')) {
+            <p class="auth-error" id="register-page-lastName-error">Escribe tus apellidos.</p>
+          }
+        </div>
+        <div class="auth-field">
+          <label for="register-page-email">Correo electrónico</label>
+          <input id="register-page-email" type="email" autocomplete="email" formControlName="email" required
+            [attr.aria-invalid]="showError('email')" [attr.aria-describedby]="(showError('email')) ? 'register-page-email-error' : null">
+          @if (showError('email')) {
+            <p class="auth-error" id="register-page-email-error">{{ form.controls.email.hasError('required') ? 'Escribe tu correo electrónico.' : 'Escribe un correo electrónico con formato válido.' }}</p>
+          }
+        </div>
+        <div class="auth-field">
+          <label for="register-page-phone">Teléfono</label>
+          <input id="register-page-phone" type="tel" autocomplete="tel" formControlName="phone" required
+            [attr.aria-invalid]="showError('phone')" [attr.aria-describedby]="(showError('phone')) ? 'register-page-phone-error' : null">
+          @if (showError('phone')) {
+            <p class="auth-error" id="register-page-phone-error">Escribe tu teléfono.</p>
+          }
+        </div>
+        <div class="auth-field">
+          <label for="register-page-password">Contraseña</label>
+          <input id="register-page-password" type="password" autocomplete="new-password" formControlName="password" required
+            [attr.aria-invalid]="showError('password')" [attr.aria-describedby]="(showError('password')) ? 'register-page-password-error' : null">
+          @if (showError('password')) {
+            <p class="auth-error" id="register-page-password-error">Escribe tu contraseña.</p>
+          }
+        </div>
+        <div class="auth-field">
+          <label for="register-page-confirmPassword">Confirmación de contraseña</label>
+          <input id="register-page-confirmPassword" type="password" autocomplete="new-password" formControlName="confirmPassword" required
+            [attr.aria-invalid]="showError('confirmPassword') || showPasswordMismatch()" [attr.aria-describedby]="(showError('confirmPassword') || showPasswordMismatch()) ? 'register-page-confirmPassword-error' : null">
+          @if (showError('confirmPassword')) {
+            <p class="auth-error" id="register-page-confirmPassword-error">Confirma tu contraseña.</p>
+          } @else if (showPasswordMismatch()) {
+            <p class="auth-error" id="register-page-confirmPassword-error">Las contraseñas no coinciden.</p>
+          }
+        </div>
+      </div>
+      <button class="auth-submit" type="submit">Validar datos</button>
+      <p class="auth-feedback" role="status" aria-live="polite" aria-atomic="true">{{ feedback() }}</p>
+    </form>
+    <p class="auth-switch">¿Ya tienes cuenta? <a routerLink="/login">Ir al inicio de sesión</a></p>
+  </section>
+</div>

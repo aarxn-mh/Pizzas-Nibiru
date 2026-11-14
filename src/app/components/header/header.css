@@ -4,7 +4,8 @@
 .utility-bar p span { color: var(--orange); font-size: 25px; margin-right: 12px; }
 .menu-shortcut { margin-left: auto; font-weight: 600; }
 .basket { display: flex; align-items: center; justify-content: space-around; width: 310px; height: 70px; background: var(--green); color: white; text-decoration: none; font-weight: 600; }
-.basket span { font-size: 26px; }
+.basket-arrow { font-size: 26px; }
+.basket-count { font-size: 14px; border-radius: 24px; padding: 4px 8px; background: var(--orange); color: var(--ink); overflow-wrap: anywhere; }
 .navigation-row { display: flex; align-items: center; justify-content: space-between; height: 140px; gap: 35px; }
 nav { display: flex; align-items: center; gap: 18px; }
 nav a { padding: 13px 25px; border-radius: 120px; text-decoration: none; font-size: 18px; font-weight: 500; }
@@ -34,7 +35,7 @@ nav a:hover { text-decoration: underline; }
   .login { grid-column: 1; background: var(--orange); color: var(--ink); }
   .login img { filter: brightness(0); }
   .basket { grid-column: 2; }
-  .basket span { display: none; }
+  .basket-arrow { display: none; }
   nav { display: none; grid-row: 3; grid-column: 1 / -1; background: #fafafa; padding: 12px; border: 1px solid #ddd; border-radius: 0 0 12px 12px; }
   nav.is-open { display: flex; flex-wrap: wrap; gap: 8px; }
   nav a { flex: 1 1 140px; text-align: center; }

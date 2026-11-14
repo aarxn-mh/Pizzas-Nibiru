@@ -1,1 +1,32 @@
-<p>login-page works!</p>
+<div class="container auth-page">
+  <section class="auth-card" aria-labelledby="login-page-title">
+    <p class="auth-eyebrow">Pizzas Nibiru <span aria-hidden="true">✦</span></p>
+    <h1 id="login-page-title">Iniciar sesión</h1>
+    <p class="auth-intro">Acceso para clientes y administradores de Pizzas Nibiru.</p>
+    <p class="auth-notice" id="login-page-notice">Conexión con el servidor pendiente. Este formulario solo valida los datos localmente.</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate aria-describedby="login-page-notice">
+      <p class="auth-required">Todos los campos son obligatorios.</p>
+      <div class="auth-fields">
+        <div class="auth-field">
+          <label for="login-page-email">Correo electrónico</label>
+          <input id="login-page-email" type="email" autocomplete="email" formControlName="email" required
+            [attr.aria-invalid]="showError('email')" [attr.aria-describedby]="(showError('email')) ? 'login-page-email-error' : null">
+          @if (showError('email')) {
+            <p class="auth-error" id="login-page-email-error">{{ form.controls.email.hasError('required') ? 'Escribe tu correo electrónico.' : 'Escribe un correo electrónico con formato válido.' }}</p>
+          }
+        </div>
+        <div class="auth-field">
+          <label for="login-page-password">Contraseña</label>
+          <input id="login-page-password" type="password" autocomplete="current-password" formControlName="password" required
+            [attr.aria-invalid]="showError('password')" [attr.aria-describedby]="(showError('password')) ? 'login-page-password-error' : null">
+          @if (showError('password')) {
+            <p class="auth-error" id="login-page-password-error">Escribe tu contraseña.</p>
+          }
+        </div>
+      </div>
+      <button class="auth-submit" type="submit">Validar datos</button>
+      <p class="auth-feedback" role="status" aria-live="polite" aria-atomic="true">{{ feedback() }}</p>
+    </form>
+    <p class="auth-switch">¿Aún no tienes cuenta? <a routerLink="/registro">Ir al registro</a></p>
+  </section>
+</div>

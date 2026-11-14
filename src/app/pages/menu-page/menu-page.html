@@ -4,7 +4,10 @@
       <p class="eyebrow">Un universo de sabor</p>
       <h1 id="menu-title">Pizzas Nibiru</h1>
       <p class="hero-description">Explora nuestras categorías y encuentra tu próximo favorito.</p>
-      <div class="hero-tags"><span>Menú del restaurante</span><span>Catálogo de demostración</span></div>
+      <div class="hero-tags">
+        <span>Menú del restaurante</span>
+        <span>Catálogo de demostración</span>
+      </div>
     </div>
     <img class="restaurant-photo" src="/images/menu/restaurant-hero.png" alt="" width="581" height="361" fetchpriority="high">
     <span class="restaurant-ribbon">Descubre nuestro menú <span aria-hidden="true">✦</span></span>
@@ -21,6 +24,7 @@
         </div>
       </div>
     </div>
+
     <div class="category-bar" role="group" aria-label="Filtrar productos por categoría">
       <button type="button" [class.active]="selectedCategory() === null" [attr.aria-pressed]="selectedCategory() === null" (click)="selectCategory(null)">Todo el menú</button>
       @for (category of categories; track category.id) {
@@ -41,6 +45,7 @@
         <button type="button" (click)="resetFilters()">Limpiar filtros</button>
       </div>
     }
+    
     <div class="menu-products" id="menu-results">
       @for (product of filteredProducts(); track product.id) {
         <app-product-card [product]="product" variant="menu" />

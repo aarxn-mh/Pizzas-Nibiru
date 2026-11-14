@@ -1,1 +1,51 @@
-<p>product-detail-page works!</p>
+<div class="container product-detail">
+  <a class="back-link" routerLink="/menu"><span aria-hidden="true">←</span> Volver al menú</a>
+
+  @if (product(); as selectedProduct) {
+    <article class="detail-card" aria-labelledby="product-title">
+      <div class="product-visual">
+        <span class="visual-label">Pizzas Nibiru <span aria-hidden="true">✦</span></span>
+        <img class="product-image" [src]="selectedProduct.image" [alt]="selectedProduct.name" width="600" height="600" fetchpriority="high">
+      </div>
+      <div class="product-information">
+        <p class="eyebrow">Un universo de sabor</p>
+        <p class="category"><span class="field-label">Categoría</span> {{ category()?.name ?? 'Categoría no disponible' }}</p>
+        <h1 id="product-title">{{ selectedProduct.name }}</h1>
+        <p class="description">{{ selectedProduct.description }}</p>
+        <p class="availability" [class.unavailable]="!selectedProduct.available">
+          <span class="status-dot" aria-hidden="true"></span>
+          {{ selectedProduct.available ? 'Disponible' : 'No disponible' }}
+        </p>
+        @if (!selectedProduct.available) {
+          <p class="availability-note">Este producto no está disponible para la venta. Puedes consultar su información.</p>
+        }
+        <div class="price-panel">
+          <span>Precio del producto</span>
+          <p class="price">{{ selectedProduct.price | currency:'MXN':'symbol':'1.2-2':'es-MX' }} <span>MXN</span></p>
+        </div>
+        <div class="selection">
+          <div class="quantity-control" role="group" aria-label="Cantidad de unidades">
+            <button type="button" aria-label="Disminuir cantidad" [disabled]="!canAdd() || quantity() <= 1" (click)="decreaseQuantity()">−</button>
+            <output aria-label="Cantidad seleccionada" aria-live="polite">{{ quantity() }}</output>
+            <button type="button" aria-label="Aumentar cantidad" [disabled]="!canIncrease()" (click)="increaseQuantity()">+</button>
+          </div>
+          <p class="selection-subtotal">Subtotal de selección
+            <strong>{{ subtotalCents() === null ? 'Cantidad inválida' : (subtotalCents()! / 100 | currency:'MXN':'symbol':'1.2-2':'es-MX') }}</strong>
+          </p>
+        </div>
+        <button class="add-button" type="button" [disabled]="!canAdd()" (click)="addToCart()">Agregar al carrito (demo)</button>
+        <p class="add-feedback" role="status" aria-live="polite" aria-atomic="true">{{ feedback() }}</p>
+        <a class="cart-link" routerLink="/carrito">Consultar el carrito</a>
+        <p class="demo-note">Producto de demostración. Imagen, precio y disponibilidad de ejemplo.</p>
+      </div>
+    </article>
+  } @else {
+    <section class="empty-state" aria-labelledby="missing-title">
+      <span class="empty-icon" aria-hidden="true">✦</span>
+      <p class="eyebrow">Pizzas Nibiru</p>
+      <h1 id="missing-title">Producto no encontrado</h1>
+      <p>El producto que buscas no existe o ya no está activo en el catálogo.</p>
+      <a class="button" routerLink="/menu">Explorar el menú <span aria-hidden="true">→</span></a>
+    </section>
+  }
+</div>

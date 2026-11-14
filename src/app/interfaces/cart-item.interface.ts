@@ -1,1 +1,4 @@
-export interface CartItem {}
+export interface CartItem {
+  readonly productId: string;
+  readonly quantity: number;
+}
